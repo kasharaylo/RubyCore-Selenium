@@ -5,10 +5,12 @@ class Real_Book < Book
 
   def initialize(options)
     @weight = options[:weight]
-    super
+    super(options[:name], options)
   end
+
   def info
     yield(weight)
     super
   end
+
 end

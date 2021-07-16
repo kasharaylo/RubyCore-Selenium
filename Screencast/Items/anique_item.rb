@@ -1,0 +1,3 @@
+class AniquieItem < Book
+
+end

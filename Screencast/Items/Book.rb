@@ -10,13 +10,18 @@ class Book
     end
   end
 
-  def initialize(options = {})
+  def initialize(name, options = {})
     @real_price = options[:price]
-    @name = options[:name]
+    @name = name
   end
 
   attr_reader :real_price, :name
   attr_writer :price,
+
+  def info
+    yield(price)
+    yield(name)
+  end
 
   def price
     (@real_price - @real_price*self.class.discount) + tax if @real_price
@@ -26,6 +31,7 @@ class Book
     "#{self.name}:#{self.price}:#{self.weight}"
   end
 
+  private
   def tax
     type_tax =
       if self.class == Real_Book
